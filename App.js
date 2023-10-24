@@ -16,13 +16,19 @@ export default function App() {
   return (
     <>
     <StatusBar style="light" />
-    <NavigationContainer>
+    <NavigationContainer
+    >
       <Tab.Navigator
       screenOptions={{
         tabBarActiveTintColor: GlobalStyles.colors.accent500,
         tabBarStyle: {
           backgroundColor: GlobalStyles.colors.primary500,
-        }
+        },
+        headerStyle: {
+          backgroundColor: GlobalStyles.colors.primary500
+        },
+        headerTintColor: "white",
+        
       }}
       >
         <Tab.Screen 

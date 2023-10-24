@@ -4,7 +4,7 @@ import { GlobalStyles } from "../constants/styles";
 const AllExpenses = () => {
     return (
         <View style={styles.container}>
-            <Text style={styles.container}>
+            <Text style={styles.text}>
                 This is all Expense
             </Text>
         </View>
@@ -16,9 +16,10 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: GlobalStyles.colors.primary700
     },
     text: {
-        color: GlobalStyles.colors.primary50,
+        color: "white",
         fontSize: GlobalStyles.fonts.sizeL
     }
 });
