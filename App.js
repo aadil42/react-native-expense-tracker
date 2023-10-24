@@ -37,7 +37,9 @@ const BottomTab = () => {
             color={tintColor}
             name="add"
             onPress={() => {
-              navigation.navigate('expensePrompt');
+              navigation.navigate('expensePrompt', {
+                
+              });
             }}
             />
           }
