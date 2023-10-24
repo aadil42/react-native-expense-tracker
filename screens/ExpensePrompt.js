@@ -1,13 +1,13 @@
 import { Text, View, StyleSheet } from "react-native";
 import { GlobalStyles } from "../constants/styles";
 
+import UserInput from "../components/UserInput";
+
 const ExpensePrompt = ({ route }) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>
-                Expense prompt
-            </Text>
+            <UserInput />
         </View>
     );
 }
