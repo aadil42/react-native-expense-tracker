@@ -3,7 +3,6 @@ import { useContext } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { GlobalStyles } from "../constants/styles";
 import Button from "../components/Button"
-import UserInput from "../components/UserInput";
 
 // get  contexts
 import { ExpenseCtx } from "../store/context/ExpenseContext";
