@@ -72,7 +72,9 @@ export default function App() {
   return (
     <>
     <StatusBar style="light" />
-    <NavigationContainer>
+    <NavigationContainer
+    
+    >
       <Stack.Navigator
       screenOptions={{
         headerTintColor: "white",
@@ -94,7 +96,8 @@ export default function App() {
          name="expensePrompt" 
          component={ExpensePrompt} 
          options={{
-          headerLeft: () => null
+          headerLeft: () => null,
+          presentation: 'modal'
          }}
          />
 
