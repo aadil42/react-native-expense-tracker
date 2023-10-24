@@ -1,25 +1,44 @@
+import { useContext } from "react";
+
 import { Text, View, StyleSheet } from "react-native";
 import { GlobalStyles } from "../constants/styles";
 import Button from "../components/Button"
 import UserInput from "../components/UserInput";
 
+// get  contexts
+import { ExpenseCtx } from "../store/context/ExpenseContext";
+
 const ExpensePrompt = ({ route }) => {
 
+    const ctx = useContext(ExpenseCtx);
+    
     const expenseId = route.params.id;
     const isEditing = expenseId === undefined ? false : true;
 
+
+
     const confirmPress = () => {
         if(isEditing) {
-            console.log('editing');
+            // console.log('editing');
             // edit new expense.
+            ctx.update();
         } else {
-            console.log('adding new');
+            // console.log('adding new');
+            ctx.add({
+                id: Math.floor(Math.random()*1000000).toString(),
+                title: "dummy title",
+                date: new Date()
+            });
             // add new expense.
         }
     }
 
     const canclePrompt = () => {
         console.log('cancel...');
+    }
+
+    const deleteHandler = () => {
+        console.log('deleting...');
     }
 
     return (

@@ -12,6 +12,9 @@ import AllExpenses from "./screens/AllExpenses";
 import RecentExpenses from "./screens/RecentExpenses";
 import ExpensePrompt from "./screens/ExpensePrompt";
 
+// context imports
+import ExpenseContext from './store/context/ExpenseContext';
+
 import { GlobalStyles } from './constants/styles';
 
 
@@ -74,9 +77,8 @@ export default function App() {
   return (
     <>
     <StatusBar style="light" />
-    <NavigationContainer
-    
-    >
+    <ExpenseContext>
+    <NavigationContainer>
       <Stack.Navigator
       screenOptions={{
         headerTintColor: "white",
@@ -98,13 +100,14 @@ export default function App() {
          name="expensePrompt" 
          component={ExpensePrompt} 
          options={{
-          headerLeft: () => null,
+          // headerLeft: () => null,
           presentation: 'modal'
          }}
          />
 
       </Stack.Navigator>
     </NavigationContainer>
+    </ExpenseContext>
     </>
   );
 }

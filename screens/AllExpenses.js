@@ -1,12 +1,22 @@
+import { useContext } from "react";
+
 import { View, Text, StyleSheet } from "react-native";
 import { GlobalStyles } from "../constants/styles";
 
+// get components
+import List from "../components/List";
+
+// get contexts
+import { ExpenseCtx } from "../store/context/ExpenseContext";
+
 const AllExpenses = () => {
+
+    const ctx = useContext(ExpenseCtx);
+    
+    const allExpenseList = ctx.list;
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>
-                This is all Expense
-            </Text>
+            <List list={allExpenseList} />
         </View>
     );
 }
