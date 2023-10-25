@@ -7,7 +7,7 @@ import UserInput from "../components/UserInput";
 // get  contexts
 import { ExpenseCtx } from "../store/context/ExpenseContext";
 
-const ExpensePrompt = ({ route }) => {
+const ExpensePrompt = ({ route, navigation }) => {
 
     const ctx = useContext(ExpenseCtx);
     
@@ -36,7 +36,7 @@ const ExpensePrompt = ({ route }) => {
     }
 
     const canclePrompt = () => {
-        console.log('cancel...');
+        navigation.goBack();
     }
 
     const deleteHandler = () => {
