@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { View, Text, TextInput, StyleSheet, Pressable } from "react-native";
 
+import IconBtn from "./IconBtn";
 import Button from "./Button";
 
 import { GlobalStyles } from "../constants/styles";
@@ -35,7 +36,7 @@ const UserInput = ({title, date, amount, canclePrompt, confirmPress, isEditing, 
     }
 
     const deleteBtn = <View style={styles.btnContainer}>
-                        <Button pressHandler={deleteHandler} incomingStyle={[styles.deleteStyle]} title="Delete"/>
+                        <IconBtn pressHandler={deleteHandler} name="trash" size={30} color={GlobalStyles.colors.error500} />
                       </View>;
                       
     return (
