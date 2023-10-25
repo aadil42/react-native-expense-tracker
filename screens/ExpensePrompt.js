@@ -1,8 +1,8 @@
 import { useContext } from "react";
 
 import { Text, View, StyleSheet } from "react-native";
-import { GlobalStyles } from "../constants/styles";
 import Button from "../components/Button"
+import UserInput from "../components/UserInput";
 
 // get  contexts
 import { ExpenseCtx } from "../store/context/ExpenseContext";
@@ -14,18 +14,20 @@ const ExpensePrompt = ({ route }) => {
     const expenseId = route.params.id;
     const isEditing = expenseId === undefined ? false : true;
 
-
-
-    const confirmPress = () => {
+    const confirmPress = ({title, amount}) => {
+        
         if(isEditing) {
-            // console.log('editing');
-            // edit new expense.
-            ctx.update();
+            // ctx.update({
+            //     id: expenseId,
+            //     title: data.title,
+
+            // });
         } else {
             // console.log('adding new');
             ctx.add({
                 id: Math.floor(Math.random()*1000000).toString(),
-                title: "dummy title",
+                title: title,
+                amount: amount,
                 date: new Date()
             });
             // add new expense.
@@ -40,26 +42,21 @@ const ExpensePrompt = ({ route }) => {
         console.log('deleting...');
     }
 
+
     return (
-        <View style={styles.container}>
-          <Button pressHandler={canclePrompt} incomingStyle={[styles.cancleStyle]} title="Cancel" /> 
-          <Button pressHandler={confirmPress} incomingStyle={[]} title={(isEditing && "Edit") || "Add"}/>
-        </View>
+        <UserInput 
+        canclePrompt={canclePrompt} 
+        confirmPress={confirmPress} 
+        title="test" date={{}} 
+        amount=""
+        isEditing={isEditing}
+        deleteHandler={deleteHandler}
+        />
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        backgroundColor: GlobalStyles.colors.primary700,
-        flexDirection: "row",
-        paddingTop: 30
-    },
-    cancleStyle:  {
-        backgroundColor: GlobalStyles.colors.primary700,
-        opacity: .6
-    }
+
 });
 
 export default ExpensePrompt;
