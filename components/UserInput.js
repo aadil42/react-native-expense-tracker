@@ -7,7 +7,7 @@ import Button from "./Button";
 
 import { GlobalStyles } from "../constants/styles";
 
-const UserInput = ({title, date, amount, canclePrompt, confirmPress, isEditing, deleteHandler}) => {
+const UserInput = ({title, amount, canclePrompt, confirmPress, isEditing, deleteHandler}) => {
 
     const [textInput, setTextInput] = useState(title);
     const [inputAmount, setInputAmount] = useState(amount);
@@ -20,15 +20,13 @@ const UserInput = ({title, date, amount, canclePrompt, confirmPress, isEditing, 
         const numberOfPeriods = value.split('').filter((char) => {
             return char === '.'
         }).length;
-
-        console.log(numberOfPeriods, 'nums');
-
         if(numberOfPeriods < 2) {
             setInputAmount(value.replace(/[^0-9.]/g, ''));
         }
     }
 
     const submitHandler = () => {
+        console.log(inputAmount, 'this is');
         confirmPress({
             title: textInput,
             amount: inputAmount

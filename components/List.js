@@ -7,10 +7,11 @@ const List = ({ list, navigation }) => {
 
     const renderer = (itemData) => {
         const item = itemData.item;
-        console.log(item);
         const pressHandler = () => {
             navigation.navigate('expensePrompt', {
-                id: item.id
+                id: item.id,
+                title: item.title,
+                amount: item.amount
             });
         }
 

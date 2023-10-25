@@ -16,12 +16,26 @@ const ExpenseContext = ({children}) => {
             });
         },
 
-        update: (id, data) => {
-          console.log('updating...');
+        update: ({id, title, amount}) => {
+          
+          let idx = 0;
+          let expense = expenseList.filter((expense, index) => {
+            if(expense.id === id) {
+                idx = index; 
+                return true;
+            }
+          });
+          expense = expense[0];
+          expense.title = title;
+          expense.amount = amount;
+          const newCopy = {...expense};
+
+          return setExpenseList((list) => {
+            return [...list.slice(0, idx), newCopy, ...list.slice(idx+1)];
+          })
         },
 
         remove: (id) => {
-            console.log('removing...', id);
             return setExpenseList((list) => {
                 return list.filter((listItem) => {
                    return listItem.id !==  id

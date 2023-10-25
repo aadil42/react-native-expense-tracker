@@ -12,17 +12,21 @@ const ExpensePrompt = ({ route, navigation }) => {
     const ctx = useContext(ExpenseCtx);
     
     const expenseId = route.params.id;
+    const currentTitle = route.params.title;
+    const currentAmount = route.params.amount;
+
     const isEditing = expenseId === undefined ? false : true;
 
     const confirmPress = ({title, amount}) => {
         
         if(isEditing) {
-            // ctx.update({
-            //     id: expenseId,
-            //     title: data.title,
-
-            // });
-            console.log('editing');
+            // console.log(amount)
+            ctx.update({
+                id: expenseId,
+                title: title,
+                amount: amount
+            });
+            // console.log('editing');
         } else {
             // console.log('adding new');
             ctx.add({
@@ -48,8 +52,8 @@ const ExpensePrompt = ({ route, navigation }) => {
         <UserInput 
         canclePrompt={canclePrompt} 
         confirmPress={confirmPress} 
-        title="test" date={{}} 
-        amount=""
+        title={currentTitle} 
+        amount={currentAmount}
         isEditing={isEditing}
         deleteHandler={deleteHandler}
         />
