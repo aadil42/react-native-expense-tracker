@@ -21,12 +21,12 @@ const ExpenseContext = ({children}) => {
         },
 
         remove: (id) => {
-            // setExpenseList((list) => {
-            //     return list.filter((listItem) => {
-            //         listItem.id !==  id
-            //     });
-            // });
-            console.log('removing...');
+            console.log('removing...', id);
+            return setExpenseList((list) => {
+                return list.filter((listItem) => {
+                   return listItem.id !==  id
+                });
+            });
         }
     }
 

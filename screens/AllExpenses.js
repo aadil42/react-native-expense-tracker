@@ -9,14 +9,14 @@ import List from "../components/List";
 // get contexts
 import { ExpenseCtx } from "../store/context/ExpenseContext";
 
-const AllExpenses = () => {
+const AllExpenses = ({ navigation }) => {
 
     const ctx = useContext(ExpenseCtx);
     
     const allExpenseList = ctx.list;
     return (
         <View style={styles.container}>
-            <List list={allExpenseList} />
+            <List navigation={navigation} list={allExpenseList} />
         </View>
     );
 }

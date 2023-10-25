@@ -1,9 +1,9 @@
 
-import {StyleSheet, View, Text } from "react-native";
+import {StyleSheet, View, Text, Pressable } from "react-native";
 
 import { GlobalStyles } from "../constants/styles";
 
-const ListItem = ({ title, date, amount }) => {    
+const ListItem = ({ title, date, amount, pressHandler }) => {    
 
     const year = date.getUTCFullYear().toString().slice(-2);
     const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
@@ -11,8 +11,9 @@ const ListItem = ({ title, date, amount }) => {
 
     const readableDate = `${year}-${month}-${day}`;
 
+
     return (
-       <View style={styles.container}>
+       <Pressable onPress={pressHandler} style={styles.container}>
         <View>
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.date}>{readableDate}</Text>
@@ -22,7 +23,7 @@ const ListItem = ({ title, date, amount }) => {
                 {amount}
             </Text>
         </View>
-       </View>
+       </Pressable>
     );
 }
 

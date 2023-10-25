@@ -6,7 +6,7 @@ import List from "../components/List";
 
 import { ExpenseCtx } from "../store/context/ExpenseContext";
 
-const RecentExpenses = () => {
+const RecentExpenses = ({ navigation }) => {
 
     const ctx = useContext(ExpenseCtx);
     const recentList = ctx.list.sort((a,b) => {
@@ -19,7 +19,7 @@ const RecentExpenses = () => {
                 <Text style={styles.lightTextColor}>Last 7 days</Text>
                 <Text style={styles.darkTextColor}>${recentList.slice(0, 7).reduce((acc, curr) => (acc+ +(curr.amount)), 0)}</Text>
             </View>
-            <List list={recentList.slice(0, 7)} />
+            <List navigation={navigation} list={recentList.slice(0, 7)} />
         </View>
     );
 }

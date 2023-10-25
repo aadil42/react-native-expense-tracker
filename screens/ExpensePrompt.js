@@ -22,6 +22,7 @@ const ExpensePrompt = ({ route }) => {
             //     title: data.title,
 
             // });
+            console.log('editing');
         } else {
             // console.log('adding new');
             ctx.add({
@@ -39,7 +40,7 @@ const ExpensePrompt = ({ route }) => {
     }
 
     const deleteHandler = () => {
-        console.log('deleting...');
+        ctx.remove(expenseId);
     }
 
 

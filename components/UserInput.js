@@ -34,6 +34,10 @@ const UserInput = ({title, date, amount, canclePrompt, confirmPress, isEditing, 
         });
     }
 
+    const deleteBtn = <View style={styles.btnContainer}>
+                        <Button pressHandler={deleteHandler} incomingStyle={[styles.deleteStyle]} title="Delete"/>
+                      </View>;
+                      
     return (
         <View style={styles.container}>
             <View style={styles.inputContainer}>
@@ -57,6 +61,7 @@ const UserInput = ({title, date, amount, canclePrompt, confirmPress, isEditing, 
                 <Button pressHandler={canclePrompt} incomingStyle={[styles.cancleStyle]} title="Cancel" /> 
                 <Button pressHandler={submitHandler} incomingStyle={[]} title={(isEditing && "Edit") || "Add"}/>
             </View>
+            {isEditing && deleteBtn}
         </View>
     );
 }
@@ -90,6 +95,9 @@ const styles = StyleSheet.create({
     cancleStyle:  {
         backgroundColor: GlobalStyles.colors.primary700,
         opacity: .6
+    },
+    deleteStyle: {
+        backgroundColor: GlobalStyles.colors.error500
     }
 });
 export default UserInput;
