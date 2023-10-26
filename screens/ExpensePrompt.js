@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Alert } from "react-native";
 import Button from "../components/Button"
 import UserInput from "../components/UserInput";
 
@@ -17,25 +17,56 @@ const ExpensePrompt = ({ route, navigation }) => {
 
     const isEditing = expenseId === undefined ? false : true;
 
+    const updateAlert = () => {
+        return Alert.alert("Updated.", "Expense is Updated.", [
+            {
+                text: "Ok",
+                onPress: () => {
+                    console.log('ok alert');
+                }
+            }
+        ]);
+    }
+
+    const addAlert = () => {
+        return Alert.alert("Added.", "Expense is Added.", [
+            {
+                text: "Ok",
+                onPress: () => {
+                    console.log('ok alert');
+                }
+            }
+        ]);
+    }
+
+    const deleteAlert = () => {
+        return Alert.alert("Deleted.", "Expense is Deleted.", [
+            {
+                text: "Ok",
+                onPress: () => {
+                    console.log('ok alert');
+                }
+            }
+        ]);
+    }
+
     const confirmPress = ({title, amount}) => {
         
         if(isEditing) {
-            // console.log(amount)
             ctx.update({
                 id: expenseId,
                 title: title,
                 amount: amount
             });
-            // console.log('editing');
+            updateAlert();
         } else {
-            // console.log('adding new');
             ctx.add({
                 id: Math.floor(Math.random()*1000000).toString(),
                 title: title,
                 amount: amount,
                 date: new Date()
             });
-            // add new expense.
+            addAlert();
         }
     }
 
@@ -45,6 +76,7 @@ const ExpensePrompt = ({ route, navigation }) => {
 
     const deleteHandler = () => {
         ctx.remove(expenseId);
+        deleteAlert();
     }
 
 
