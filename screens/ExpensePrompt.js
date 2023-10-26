@@ -22,7 +22,7 @@ const ExpensePrompt = ({ route, navigation }) => {
             {
                 text: "Ok",
                 onPress: () => {
-                    console.log('ok alert');
+                    navigation.goBack();
                 }
             }
         ]);
@@ -33,7 +33,7 @@ const ExpensePrompt = ({ route, navigation }) => {
             {
                 text: "Ok",
                 onPress: () => {
-                    console.log('ok alert');
+                    navigation.goBack();
                 }
             }
         ]);
@@ -44,7 +44,7 @@ const ExpensePrompt = ({ route, navigation }) => {
             {
                 text: "Ok",
                 onPress: () => {
-                    console.log('ok alert');
+                    navigation.goBack();
                 }
             }
         ]);
