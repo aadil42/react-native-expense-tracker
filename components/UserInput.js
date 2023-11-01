@@ -9,8 +9,9 @@ import { GlobalStyles } from "../constants/styles";
 
 const UserInput = ({title, amount, canclePrompt, confirmPress, isEditing, deleteHandler}) => {
 
-    const [textInput, setTextInput] = useState(title);
-    const [inputAmount, setInputAmount] = useState(amount);
+    
+    const [textInput, setTextInput] = useState(title || "");
+    const [inputAmount, setInputAmount] = useState(amount || "");
     
     const textInputHandler = (value) => {
         setTextInput(value);
@@ -26,7 +27,6 @@ const UserInput = ({title, amount, canclePrompt, confirmPress, isEditing, delete
     }
 
     const submitHandler = () => {
-        console.log(inputAmount, 'this is');
         confirmPress({
             title: textInput,
             amount: inputAmount
@@ -50,7 +50,7 @@ const UserInput = ({title, amount, canclePrompt, confirmPress, isEditing, delete
                 <TextInput 
                     value={inputAmount}
                     placeholder="Enter Amount"
-                    keyboardType="numeric"
+                    keyboardType="decimal-pad"
                     onChangeText={inputAmountHandler}
                     style={styles.input}
                     placeholderTextColor="white"
