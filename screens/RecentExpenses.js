@@ -3,8 +3,8 @@ import { View, Text, StyleSheet } from "react-native";
 import { GlobalStyles } from "../constants/styles";
 
 import List from "../components/List";
-
 import Total from "../components/Total";
+import Message from "../components/Message";
 
 import { ExpenseCtx } from "../store/context/ExpenseContext";
 
@@ -19,11 +19,19 @@ const RecentExpenses = ({ navigation }) => {
         return acc + +expense.amount; 
     }, 0);
 
+    let content =  <View style={styles.container}>
+                        <Total title="Last 7 days" total={total}/>
+                        <List navigation={navigation} list={recentList.slice(0, 7)} />
+                   </View>
+
+    if(recentList.length === 0) {
+    content = <View style={styles.container}>
+                <Message message="No Expenses added yet." />
+              </View>
+    }  
+
     return (
-        <View style={styles.container}>
-            <Total title="Last 7 days" total={total}/>
-            <List navigation={navigation} list={recentList.slice(0, 7)} />
-        </View>
+        content
     );
 }
 

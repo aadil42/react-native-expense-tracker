@@ -6,6 +6,7 @@ import { GlobalStyles } from "../constants/styles";
 // get components
 import List from "../components/List";
 import Total from "../components/Total";
+import Message from "../components/Message";
 
 // get contexts
 import { ExpenseCtx } from "../store/context/ExpenseContext";
@@ -19,11 +20,18 @@ const AllExpenses = ({ navigation }) => {
         return acc + +expense.amount;
     }, 0);
 
+    let content = <View style={styles.container}>
+                        <Total total={total} title="All Expense total" />
+                        <List navigation={navigation} list={allExpenseList} />
+                    </View>;
+    if(allExpenseList.length === 0) {
+        content = <View style={styles.container}>
+                    <Message message="No Expenses added yet." />
+                 </View>
+    }           
+         
     return (
-        <View style={styles.container}>
-            <Total total={total} title="All Expense total" />
-            <List navigation={navigation} list={allExpenseList} />
-        </View>
+        content
     );
 }
 
