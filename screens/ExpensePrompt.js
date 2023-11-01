@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useLayoutEffect } from "react";
 import { Text, View, StyleSheet, Alert } from "react-native";
 import Button from "../components/Button"
 import UserInput from "../components/UserInput";
@@ -15,6 +15,13 @@ const ExpensePrompt = ({ route, navigation }) => {
     const currentAmount = route.params.amount;
 
     const isEditing = expenseId === undefined ? false : true;
+
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            title: isEditing ? "Update Expense"  : "Add Expense"
+        });
+    }, [isEditing, navigation]);
+
 
     const updateAlert = () => {
         return Alert.alert("Updated.", "Expense is Updated.", [
