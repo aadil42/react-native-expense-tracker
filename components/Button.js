@@ -16,8 +16,7 @@ const Button = ({title, incomingStyle, pressHandler}) => {
 const styles = StyleSheet.create({
     container:  {
         backgroundColor: GlobalStyles.colors.primary500,
-        width: 120,
-        paddingHorizontal: 10,
+        minWidth: 120,
         paddingVertical: 7,
         borderRadius: 10
     },

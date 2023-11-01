@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         paddingVertical: 15,
         color:  GlobalStyles.colors.primary800,
         borderRadius: 5,
-        width: 100,
+        minWidth: 100,
         fontSize: 20,
         fontWeight: "bold",
         textAlign:  "center"
