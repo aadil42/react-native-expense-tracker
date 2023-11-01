@@ -4,6 +4,8 @@ import { GlobalStyles } from "../constants/styles";
 
 import List from "../components/List";
 
+import Total from "../components/Total";
+
 import { ExpenseCtx } from "../store/context/ExpenseContext";
 
 const RecentExpenses = ({ navigation }) => {
@@ -13,12 +15,13 @@ const RecentExpenses = ({ navigation }) => {
         return b.date - a.date;        
     });
 
+    const total = recentList.slice(0,7).reduce((acc, expense) => {
+        return acc + +expense.amount; 
+    }, 0);
+
     return (
         <View style={styles.container}>
-            <View style={styles.recentTotalContainer}>
-                <Text style={styles.lightTextColor}>Last 7 days</Text>
-                <Text style={styles.darkTextColor}>${recentList.slice(0, 7).reduce((acc, curr) => (acc+ +(curr.amount)), 0)}</Text>
-            </View>
+            <Total title="Last 7 days" total={total}/>
             <List navigation={navigation} list={recentList.slice(0, 7)} />
         </View>
     );
@@ -30,16 +33,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: GlobalStyles.colors.primary700
-    },
-    lightTextColor: {
-        opacity: .7,
-        fontSize: 20,
-        color: GlobalStyles.colors.primary500
-    },
-    darkTextColor: {
-        fontSize: 25,
-        fontWeight: "bold",
-        color: GlobalStyles.colors.primary500
     },
     recentTotalContainer: {
         flexDirection: "row",
