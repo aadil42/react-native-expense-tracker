@@ -1,5 +1,4 @@
 import { useContext } from "react";
-
 import { Text, View, StyleSheet, Alert } from "react-native";
 import Button from "../components/Button"
 import UserInput from "../components/UserInput";

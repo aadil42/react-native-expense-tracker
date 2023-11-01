@@ -1,10 +1,11 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, View} from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import ListItem from "./ListItem";
 
-const List = ({ list, navigation }) => {    
+const List = ({ list }) => {    
 
-
+    const navigation = useNavigation();
     const renderer = (itemData) => {
         const item = itemData.item;
         const pressHandler = () => {

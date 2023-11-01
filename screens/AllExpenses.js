@@ -22,7 +22,7 @@ const AllExpenses = ({ navigation }) => {
 
     let content = <View style={styles.container}>
                         <Total total={total} title="All Expense total" />
-                        <List navigation={navigation} list={allExpenseList} />
+                        <List list={allExpenseList} />
                     </View>;
     if(allExpenseList.length === 0) {
         content = <View style={styles.container}>

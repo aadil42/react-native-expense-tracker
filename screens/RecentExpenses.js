@@ -21,7 +21,7 @@ const RecentExpenses = ({ navigation }) => {
 
     let content =  <View style={styles.container}>
                         <Total title="Last 7 days" total={total}/>
-                        <List navigation={navigation} list={recentList.slice(0, 7)} />
+                        <List list={recentList.slice(0, 7)} />
                    </View>
 
     if(recentList.length === 0) {
