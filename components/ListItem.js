@@ -14,11 +14,11 @@ const ListItem = ({ title, date, amount, pressHandler }) => {
 
     return (
        <Pressable onPress={pressHandler} style={styles.container}>
-        <View>
+        <View style={styles.leftContainer}>
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.date}>{readableDate}</Text>
         </View>
-        <View>
+        <View style={styles.rightContainer}>
             <Text style={styles.amount}>
                 {amount}
             </Text>
@@ -33,14 +33,19 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems:  "center",
-        padding: 15,
+        paddingVertical: 15,
+        paddingHorizontal: 5,
         marginBottom: 15,
         borderRadius: 8        
+    },
+    leftContainer: {
+        maxWidth: "70%"
     },
     title: {
         fontWeight:  "bold",
         color: "white",
-        fontSize:  20
+        fontSize:  20,
+        marginBottom: 8
     },
     date:  {
         fontWeight: "normal",
@@ -53,7 +58,7 @@ const styles = StyleSheet.create({
         paddingVertical: 15,
         color:  GlobalStyles.colors.primary800,
         borderRadius: 5,
-        minWidth: 100,
+        minWidth: 90,
         fontSize: 20,
         fontWeight: "bold",
         textAlign:  "center"
