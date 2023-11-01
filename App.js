@@ -12,6 +12,9 @@ import AllExpenses from "./screens/AllExpenses";
 import RecentExpenses from "./screens/RecentExpenses";
 import ExpensePrompt from "./screens/ExpensePrompt";
 
+// component imports
+import IconBtn from './components/IconBtn';
+
 // context imports
 import ExpenseContext from './store/context/ExpenseContext';
 
@@ -35,15 +38,14 @@ const BottomTab = () => {
           },
           headerTintColor: "white",
           headerRight: ({tintColor}) =>  {
-            return <Ionicons
-            size={24}
-            color={tintColor}
-            name="add"
-            onPress={() => {
-              navigation.navigate('expensePrompt', {
-                
-              });
-            }}
+            return <IconBtn 
+              name="add"
+              color={tintColor}
+              size={32}
+              pressHandler={() => {
+                navigation.navigate('expensePrompt', {});
+              }}
+              incomingStyles={[]}
             />
           }
         }

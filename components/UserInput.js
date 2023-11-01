@@ -34,7 +34,7 @@ const UserInput = ({title, amount, canclePrompt, confirmPress, isEditing, delete
     }
 
     const deleteBtn = <View style={styles.btnContainer}>
-                        <IconBtn pressHandler={deleteHandler} name="trash" size={30} color={GlobalStyles.colors.error500} />
+                        <IconBtn pressHandler={deleteHandler} incomingStyles={[styles.noPadding]} name="trash" size={30} color={GlobalStyles.colors.error500} />
                       </View>;
                       
     return (
@@ -97,6 +97,9 @@ const styles = StyleSheet.create({
     },
     deleteStyle: {
         backgroundColor: GlobalStyles.colors.error500
+    },
+    noPadding: {
+        padding: 0
     }
 });
 export default UserInput;
