@@ -12,10 +12,10 @@ const List = ({ list }) => {
             navigation.navigate('expensePrompt', {
                 id: item.id,
                 title: item.title,
-                amount: item.amount
+                amount: item.amount,
             });
         }
-
+        // console.log(item.date, 'from list', typeof item.date);
         return <ListItem 
             title={item.title}
             amount={item.amount}

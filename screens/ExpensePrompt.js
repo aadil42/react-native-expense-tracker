@@ -13,6 +13,7 @@ const ExpensePrompt = ({ route, navigation }) => {
     const expenseId = route.params.id;
     const currentTitle = route.params.title;
     const currentAmount = route.params.amount;
+    // const currentDate = route.params.date;
 
     const isEditing = expenseId === undefined ? false : true;
 
@@ -62,7 +63,7 @@ const ExpensePrompt = ({ route, navigation }) => {
             ctx.update({
                 id: expenseId,
                 title: title,
-                amount: amount
+                amount: amount,
             });
             updateAlert();
         } else {
