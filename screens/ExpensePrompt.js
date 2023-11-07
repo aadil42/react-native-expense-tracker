@@ -5,6 +5,8 @@ import UserInput from "../components/UserInput";
 
 import { post } from '../utils/http';
 import { updateExpense } from "../utils/http";
+import { deleteExpense } from "../utils/http";
+
 // get  contexts
 import { ExpenseCtx } from "../store/context/ExpenseContext";
 
@@ -93,6 +95,7 @@ const ExpensePrompt = ({ route, navigation }) => {
     }
 
     const deleteHandler = () => {
+        deleteExpense(expenseId);
         ctx.remove(expenseId);
         deleteAlert();
     }
