@@ -13,6 +13,7 @@ const List = ({ list }) => {
                 id: item.id,
                 title: item.title,
                 amount: item.amount,
+                date: item.date
             });
         }
         // console.log(item.date, 'from list', typeof item.date);

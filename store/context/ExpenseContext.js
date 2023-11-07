@@ -1,4 +1,4 @@
-import { createContext, useState, useReducer } from "react";
+import { createContext, useState, useReducer, useEffect } from "react";
 
 export const ExpenseCtx = createContext({
 
@@ -6,10 +6,14 @@ export const ExpenseCtx = createContext({
 
 const expenseReducer = (state, action) => {
 
+    if(action.type === "INITIALIZE") {
+        return action.payload;
+    }
+
     if(action.type  === "ADD") {
         return [action.payload, ...state];
     }
-
+    
     if(action.type === "UPDATE") {
         let idx = 0;
         let expense = state.filter((expense, index) => {
@@ -40,6 +44,10 @@ const ExpenseContext = ({children}) => {
     // const [expenseList, setExpenseList] = useState([]);
     const [expenseList, dispatch] = useReducer(expenseReducer, []);
 
+    const fetchData = (expenses) => {
+        dispatch({type: "INITIALIZE", payload: expenses});
+    }
+
     const add = (expense) => {
         dispatch({type: "ADD",payload: expense});
     }
@@ -56,44 +64,9 @@ const ExpenseContext = ({children}) => {
         list: expenseList,
         add: add,
         remove: remove,
-        update: update
+        update: update,
+        fetchData: fetchData
     }
-
-    // const values = {
-    //     list: expenseList,
-    //     add: (expense) => {
-    //         return setExpenseList((list) => {
-    //             return [expense, ...list];
-    //         });
-    //     },
-
-    //     update: ({id, title, amount}) => {
-          
-    //       let idx = 0;
-    //       let expense = expenseList.filter((expense, index) => {
-    //         if(expense.id === id) {
-    //             idx = index; 
-    //             return true;
-    //         }
-    //       });
-    //       expense = expense[0];
-    //       expense.title = title;
-    //       expense.amount = amount;
-    //       const newCopy = {...expense};
-
-    //       return setExpenseList((list) => {
-    //         return [...list.slice(0, idx), newCopy, ...list.slice(idx+1)];
-    //       })
-    //     },
-
-    //     remove: (id) => {
-    //         return setExpenseList((list) => {
-    //             return list.filter((listItem) => {
-    //                return listItem.id !==  id
-    //             });
-    //         });
-    //     }
-    // }
 
     return (
         <ExpenseCtx.Provider value={values}>

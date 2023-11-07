@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { GlobalStyles } from "../constants/styles";
 
@@ -6,9 +6,19 @@ import List from "../components/List";
 import Total from "../components/Total";
 import Message from "../components/Message";
 
+import { get } from '../utils/http';
+
 import { ExpenseCtx } from "../store/context/ExpenseContext";
 
 const RecentExpenses = ({ navigation }) => {
+
+    useEffect(() => {
+        const getData = async () => {
+            const data = await get();
+            ctx.fetchData(data);
+        }
+        getData();
+    }, []);
 
     const ctx = useContext(ExpenseCtx);
     const recentList = ctx.list.sort((a,b) => {
