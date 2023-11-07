@@ -1,10 +1,12 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { GlobalStyles } from "../constants/styles";
 
 import List from "../components/List";
 import Total from "../components/Total";
 import Message from "../components/Message";
+import Loading from "../components/Loading";
+
 
 import { get } from '../utils/http';
 
@@ -12,10 +14,13 @@ import { ExpenseCtx } from "../store/context/ExpenseContext";
 
 const RecentExpenses = ({ navigation }) => {
 
+    const [isLoading, setIsLoading] = useState(true);
+
     useEffect(() => {
         const getData = async () => {
             const data = await get();
             ctx.fetchData(data);
+            setIsLoading(false);
         }
         getData();
     }, []);
@@ -40,6 +45,11 @@ const RecentExpenses = ({ navigation }) => {
               </View>
     }  
 
+    if(isLoading) {
+        content = <View style={styles.container}>
+                    <Loading />
+                </View>
+    }
     return (
         content
     );

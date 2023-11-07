@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { View, Text, StyleSheet } from "react-native";
 import { GlobalStyles } from "../constants/styles";
@@ -7,17 +7,20 @@ import { GlobalStyles } from "../constants/styles";
 import List from "../components/List";
 import Total from "../components/Total";
 import Message from "../components/Message";
+import Loading from "../components/Loading";
 
 // get contexts
 import { ExpenseCtx } from "../store/context/ExpenseContext";
 
 const AllExpenses = ({ navigation }) => {
 
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const getData = async () => {
             const data = await get();
             ctx.fetchData(data);
+            setIsLoading(false);
         }
         getData();
         
@@ -33,11 +36,18 @@ const AllExpenses = ({ navigation }) => {
                         <Total total={total} title="All Expense total" />
                         <List list={allExpenseList} />
                     </View>;
+
     if(allExpenseList.length === 0) {
         content = <View style={styles.container}>
                     <Message message="No Expenses added yet." />
                  </View>
-    }           
+    }  
+    
+    if(isLoading) {
+        content = <View style={styles.container}>
+                    <Loading />
+                </View>
+    }         
          
     return (
         content
