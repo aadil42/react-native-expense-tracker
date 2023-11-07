@@ -3,6 +3,8 @@ import { Text, View, StyleSheet, Alert } from "react-native";
 import Button from "../components/Button"
 import UserInput from "../components/UserInput";
 
+import { post } from '../utils/http';
+
 // get  contexts
 import { ExpenseCtx } from "../store/context/ExpenseContext";
 
@@ -67,12 +69,13 @@ const ExpensePrompt = ({ route, navigation }) => {
             });
             updateAlert();
         } else {
-            ctx.add({
-                id: Math.floor(Math.random()*1000000).toString(),
+            const data = {
                 title: title,
                 amount: amount,
                 date: new Date()
-            });
+            }
+            ctx.add(data);
+            post(data);
             addAlert();
         }
     }
