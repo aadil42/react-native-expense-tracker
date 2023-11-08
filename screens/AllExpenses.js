@@ -8,6 +8,7 @@ import List from "../components/List";
 import Total from "../components/Total";
 import Message from "../components/Message";
 import Loading from "../components/Loading";
+import Error from "../components/Error";
 
 // get contexts
 import { ExpenseCtx } from "../store/context/ExpenseContext";
@@ -15,11 +16,20 @@ import { ExpenseCtx } from "../store/context/ExpenseContext";
 const AllExpenses = ({ navigation }) => {
 
     const [isLoading, setIsLoading] = useState(true);
-
+    const [isError, setIsError] = useState(false);
+    
     useEffect(() => {
         const getData = async () => {
-            const data = await get();
-            ctx.fetchData(data);
+
+            try {
+                const data = await get();
+                if(!data) throw new Error("Can't fetch the data. Check your API url.");
+                ctx.fetchData(data);
+            } catch {
+                setIsError(true);
+                throw new Error("Can't fetch the data. Check your API url.");
+            }
+
             setIsLoading(false);
         }
         getData();
@@ -48,7 +58,11 @@ const AllExpenses = ({ navigation }) => {
                     <Loading />
                 </View>
     }         
-         
+    if(isError) {
+        content = <View style={styles.container}>
+                    <Error text="Opps. Something Went wrong" />
+                </View>
+    }
     return (
         content
     );

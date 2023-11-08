@@ -4,7 +4,6 @@ import {StyleSheet, View, Text, Pressable } from "react-native";
 import { GlobalStyles } from "../constants/styles";
 
 const ListItem = ({ title, date, amount, pressHandler }) => {    
-    console.log(date, 'from listItem', typeof date);
     
     const year = date.getUTCFullYear().toString().slice(-2);
     const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');

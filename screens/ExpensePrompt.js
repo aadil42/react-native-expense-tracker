@@ -39,7 +39,16 @@ const ExpensePrompt = ({ route, navigation }) => {
             }
         ]);
     }
-
+    const networkFailer = (msg) => {
+        return Alert.alert("Oops.", msg, [
+            {
+                text: "Ok",
+                onPress: () => {
+                    navigation.goBack();
+                }
+            }
+        ]);
+    }
     const addAlert = () => {
         return Alert.alert("Added.", "Expense is Added.", [
             {
@@ -75,18 +84,37 @@ const ExpensePrompt = ({ route, navigation }) => {
                 amount: amount,
                 date: currentDate
             }
-            ctx.update(data);
-            updateExpense(expenseId, remoteDate);
-            updateAlert();
+
+            const updateData = async () => {
+                try {
+                    const response = await updateExpense(expenseId, remoteDate);
+                    if(!response) throw new Error('Something went wrong. Check your API url');
+                    ctx.update(data);
+                    updateAlert();
+                } catch {
+                    networkFailer("Something went wrong. Can't update.");
+                }
+            }
+
+            updateData();
         } else {
             const data = {
                 title: title,
                 amount: amount,
                 date: new Date()
             }
-            ctx.add(data);
-            post(data);
-            addAlert();
+            const addData = async () => {
+                try {
+                    const response = await post(data);
+                    if(!response) throw new Error('Something went wrong. Check your API url'); 
+                    ctx.add(data);              
+                    addAlert();
+                } catch {
+                    networkFailer("Something went wrong. Can't add.");
+                }
+            } 
+
+            addData();
         }
     }
 
@@ -95,9 +123,18 @@ const ExpensePrompt = ({ route, navigation }) => {
     }
 
     const deleteHandler = () => {
-        deleteExpense(expenseId);
-        ctx.remove(expenseId);
-        deleteAlert();
+
+        const deleteData = async () =>  {
+            try {
+                const response = await deleteExpense(expenseId);
+                if(!response) throw new Error('Something went wrong. Check your API url');
+                ctx.remove(expenseId);
+                deleteAlert();
+            } catch {
+                networkFailer("Something went wrong. Can't delete.")
+            }
+        }   
+        deleteData();
     }
 
 

@@ -8,12 +8,13 @@ const List = ({ list }) => {
     const navigation = useNavigation();
     const renderer = (itemData) => {
         const item = itemData.item;
+
         const pressHandler = () => {
             navigation.navigate('expensePrompt', {
                 id: item.id,
                 title: item.title,
                 amount: item.amount,
-                date: item.date
+                date: item.date.toJSON()
             });
         }
         // console.log(item.date, 'from list', typeof item.date);

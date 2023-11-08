@@ -2,8 +2,9 @@ import axios from "axios";
 
 const baseUrl = `https://react-native-expense-tra-5ecc8-default-rtdb.asia-southeast1.firebasedatabase.app`;
 
-export const post = (data) => {
-    axios.post(`${baseUrl}/expenses.json`, data);
+export const post = async (data) => {
+    const response = await axios.post(`${baseUrl}/expenses.json`, data);
+    return response;
 }
 
 export const get = async () => {
@@ -23,10 +24,11 @@ export const get = async () => {
 }
 
 export const updateExpense = async (id, expense) => {
-    console.log(expense)
-    axios.put(`${baseUrl}/expenses/${id}.json`, expense);
+    const response = await axios.put(`${baseUrl}/expenses/${id}.json`, expense);
+    return response;
 }
 
 export const deleteExpense = async (id) => {
-    axios.delete(`${baseUrl}/expenses/${id}.json`);
+    const response = await axios.delete(`${baseUrl}/expenses/${id}.json`);
+    return response;
 }
